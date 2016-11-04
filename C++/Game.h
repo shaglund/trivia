@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <vector>
+#include "Player.h"
 using namespace std;
 
 #ifndef GAME_H_
@@ -8,41 +9,32 @@ using namespace std;
 
 class Game{
 
-		private:
-			vector<string> players;
+private:
+    vector<Player> players;
 
-			int places[6];
-			int purses[6];
+    list<string> popQuestions;
+    list<string> scienceQuestions;
+    list<string> sportsQuestions;
+    list<string> rockQuestions;
 
-			bool inPenaltyBox[6];
+    vector<Player>::iterator currentPlayer;
+    bool isGettingOutOfPenaltyBox;
 
-			list<string> popQuestions;
-			list<string> scienceQuestions;
-			list<string> sportsQuestions;
-			list<string> rockQuestions;
-
-			int currentPlayer;
-			bool isGettingOutOfPenaltyBox;
+    void askQuestion();
+    bool didPlayerWin();
+    void nextPlayer();
+    void moveCurrentPlayer(int roll);
 
 public:
-	Game();
-	string createRockQuestion(int index);
-	bool isPlayable();
-	bool add(string playerName);
+    Game();
+    bool isPlayable();
+    bool add(string playerName);
 
-	int howManyPlayers();
-	void roll(int roll);
+    int howManyPlayers();
+    void roll(int roll);
+    bool correctAnswer();
+    bool wrongAnswer();
 
-	private:
-		void askQuestion();
-		string currentCategory();
-
-				public:
-					bool wasCorrectlyAnswered();
-					bool wrongAnswer();
-
-private:
-	bool didPlayerWin();
 };
 
 #endif /* GAME_H_ */
