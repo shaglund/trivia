@@ -9,7 +9,7 @@ using namespace std;
 static string createTopicQuestion(const char *topic, int index)
 {
     char indexStr[127];
-    sprintf(indexStr, "%s Question %d", topic, index);
+    snprintf(indexStr, sizeof(indexStr), "%s Question %d", topic, index);
     return indexStr;
 }
 
